@@ -18,3 +18,22 @@ export const userProfile = TryCatch(async (req, res) => {
 
   res.json(user);
 });
+
+export const getAllUsers= TryCatch(async (req, res) => {
+  try {
+    const search = req.query.search || "";
+    const users = await User.find({
+      name: {
+        $regex: search,
+        $options: "i",
+      },
+      _id: { $ne: req.user._id },
+    }).select("-password");
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
