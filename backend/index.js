@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 
 dotenv.config();    
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
+app.use("/api/messages", messageRoutes);
 
 
 const PORT =process.env.PORT;  
